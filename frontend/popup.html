@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="popup.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.css">
 
     <!-- Bootstrap CSS -->
@@ -12,6 +13,8 @@
 
     <title>Konnex</title>
   </head>
+
+
   <body>
 
 
@@ -22,14 +25,27 @@
       <div class="modal-body">
         
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="button-addon2">Search</button>
+          <input id="search_input" type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
+          <button class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
         </div>
 
       </div>
     </div>
   </div>
 </div>
+
+
+  <!-- Notfications Modal -->
+    <div class="modal fade" id="notifications" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body" style="max-height:11rem; overflow-y:auto;" id="notifications-body">
+            
+    
+          </div>
+        </div>
+      </div>
+    </div>
 
 <!-- Bug Modal -->
 <div class="modal fade" id="bug" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -40,8 +56,13 @@
         
         <form id="bug-form" method="post" enctype="multipart/form-data">
 
+          <div class="form-floating mb-3">
+            <input id="id_email" type="email" class="form-control" name="email" placeholder="name@example.com">
+            <label for="id_email">Email address</label>
+          </div> 
+
           <div class="form-floating">
-            <input id="id_bug_comment" type="name" class="form-control" name="bug_comment" placeholder="Additional Comments...">
+            <textarea id="id_bug_comment"  class="form-control" name="bug_comment" class="form-control" placeholder="Leave a comment here" name="comment" style="height: 100px"></textarea>
             <label for="id_bug_comment">Additional Comments</label>
           </div>
 
@@ -110,9 +131,28 @@
    
     <div class="container mt-2 mb-2">
 
-      <div class="row mb-2">
+      <div class="row mb-3">
         <!-- <img src="icon128x128.png" class="img-thumbnail" height="30px" width="30px"></img> -->
-        <h2 style="color:white">Konnex - AI Assitant</h2>
+
+        <div class="col-8">
+          <h2 class="lang" style="color:white;font-family: Montserrat;" key="title">Konnex - AI Assitant</h2>
+
+        </div>
+        <div class="col-4">
+
+          <div class="dropdown">
+            <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-language" style="color:white"></i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><a id="en" class="translate dropdown-item" href="#">English</a></li>
+              <li><a id="hin" class="translate dropdown-item" href="#">हिन्दी</a></li>
+              <li><a id="ben" class="translate dropdown-item" href="#">বাংলা</a></li>
+            </ul>
+          </div>
+
+        </div>
+
       </div>
 
       <div class="row row-cols-3 row-cols-md-3 g-4 align-middle">
@@ -121,7 +161,7 @@
             <div class="card-body">
               <h6 class="card-title text-center">
                 <i class="fab fa-searchengin"></i>                
-                Search
+                <span class="lang"  key="search">Search</span>
               </h6>
             </div>
           </div>
@@ -129,7 +169,8 @@
         <div class="col h-100 ">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title text-center"><i class="fas fa-robot"></i> Support</h6>
+              <h6 class="card-title text-center"><i class="fas fa-robot"></i>
+                <span class="lang" key="feedback">Support</span> </h6>
             </div>
           </div>
         </div>
@@ -137,15 +178,17 @@
         <div class="col h-100"  data-bs-toggle="modal" data-bs-target="#bug" id="bug-card">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title text-center"><i class="fas fa-bug"></i> Bugs</h6>
+              <h6 class="card-title text-center"><i class="fas fa-bug"></i> 
+                <span class="lang" key="feedback">Bugs</span></h6>
             </div>
           </div>
         </div>
         
-        <div class="col h-100">
+        <div class="col h-100" data-bs-toggle="modal" data-bs-target="#notifications" id="notifications-check">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title text-center"><i class="fas fa-bullhorn"></i> Notification</h6>
+              <h6 class="card-title text-center"><i class="fas fa-bullhorn"></i> 
+                <span class="lang" key="feedback">Notification</span></h6>
             </div>
           </div>
         </div>
@@ -153,7 +196,8 @@
         <div class="col h-100">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title text-center"><i class="fas fa-chart-line"></i> Usage</h6>
+              <h6 class="card-title text-center"><i class="fas fa-chart-line"></i>
+                <span class="lang" key="feedback">Usage</span> </h6>
             </div>
           </div>
         </div>
@@ -161,7 +205,8 @@
         <div class="col h-100" data-bs-toggle="modal" data-bs-target="#feedback">
           <div class="card">
             <div class="card-body">
-              <h6 class="card-title text-center"><i class="fas fa-comments"></i> Feedback</h6>
+              <h6 class="card-title text-center"><i class="fas fa-comments"></i> 
+                <span class="lang" key="feedback">Feedback</span></h6>
             </div>
           </div>
         </div>
@@ -169,6 +214,8 @@
   
 
     </div>
+
+    <h6 class="mt-4 text-center small font-weight-bold"><i class="fas fa-code"></i> with <i class="fas fa-heart" style="color: #cc1818"></i> by Team Slytherin</h6>
     
     <!-- <script src="https://kit.fontawesome.com/db9307bf7e.js" crossorigin="anonymous"></script> -->
     <script src="jquery-3.6.0.js"></script>

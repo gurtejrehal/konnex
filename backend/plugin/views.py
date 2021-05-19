@@ -1,5 +1,5 @@
-from django.shortcuts import HttpResponse
-from .models import Feedback, BugReporting
+from django.shortcuts import HttpResponse, render
+from .models import Feedback, BugReporting, Announcement
 from .forms import FeedbackForm
 from django.views.decorators.csrf import csrf_exempt
 import base64, secrets, io
@@ -34,14 +34,28 @@ def feedback(request):
 def bug(request):
     if request.method == 'POST':
         data_uri = request.POST.get('image')
+        email = request.POST.get('email')
         comment = request.POST.get('comment')
 
         img = get_image_from_data_url(data_url=data_uri)[0]
 
-        bug = BugReporting(image=img, comment=comment)
+        bug = BugReporting(image=img, email=email, comment=comment)
         bug.save()
 
         return HttpResponse("success")
+
+@csrf_exempt
+def notifications(request):
+    if request.method == 'GET':
+        print("here")
+
+        c = request.GET.get('status')
+        print(c)
+        notifications = Announcement.objects.order_by("-pub_date")
+        context = {
+            'notifications': notifications
+        }
+        return render(request, 'plugins/notifications.html', context=context)
 
 
 

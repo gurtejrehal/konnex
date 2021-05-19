@@ -8,3 +8,4 @@
 .tox
 .env
 backend/db.sqlite3
+backend/media/bug_images/

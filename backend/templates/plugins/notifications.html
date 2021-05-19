@@ -1,0 +1,9 @@
+{% for notification in notifications %}
+  <div class="card-body">
+    <h5>{{ notification.title }}</h5>
+    <p class="card-text">{{ notification.message }}</p>
+    <p class="card-text"><small class="text-muted">posted {{ notification.whenpublished }}.</small></p>
+
+  </div>
+  <hr>
+{% endfor %}
