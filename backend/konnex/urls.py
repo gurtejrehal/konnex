@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('plugin.urls')),
     path('admin/', admin.site.urls),
     path(r'^jet/', include('jet.urls', 'jet')),
     path(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
