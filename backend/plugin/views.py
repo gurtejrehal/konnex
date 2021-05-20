@@ -9,6 +9,8 @@ from django.db.models import Count
 from django.db.models.functions import ExtractWeekDay
 from django.http import JsonResponse
 from datetime import datetime
+import requests
+from bs4 import BeautifulSoup
 
 
 def calculate_count():
@@ -77,6 +79,28 @@ def search(request):
             obj.save()
 
         return HttpResponse('success')
+
+
+@csrf_exempt
+def description(request):
+    if request.method == 'POST':
+        result = "Could'nt generate a description, try using Support Chatbot maybe!"
+        url = request.POST.get('url')
+
+        # external_sites_html = urllib.request.urlopen(url)
+        # soup = BeautifulSoup(external_sites_html)
+
+        external_sites_html = requests.get(url)
+        soup = BeautifulSoup(external_sites_html.text)
+
+        description = soup.find('meta', attrs={'name': 'og:description'}) or soup.find('meta', attrs={
+            'property': 'description'}) or soup.find('meta', attrs={'name': 'description'}) or\
+                      soup.find('meta', attrs={'name': 'twitter:description'})
+
+        if description:
+            result = description.get('content')
+
+        return HttpResponse(result)
 
 
 @csrf_exempt
@@ -160,7 +184,7 @@ def usage(request):
 @csrf_exempt
 def rewards_api(request):
     if request.method == 'GET':
-        rewards_finish = Reward.objects.filter(completed=True)
+        rewards_finish = Reward.objects.filter(completed=True).order_by('-finish_time')
         rewards_remaining = Reward.objects.filter(completed=False)
         points = sum([obj.points for obj in rewards_finish])
         context = {

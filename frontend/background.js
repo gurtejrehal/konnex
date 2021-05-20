@@ -123,6 +123,7 @@ $("#search-btn").click(function(e){
             if($(this).children().length < 1) 
                  $(this).css("border","solid 2px red") });`}
         );
+        
       });
 
       $.ajax({
@@ -135,7 +136,30 @@ $("#search-btn").click(function(e){
 
     });
 
-})
+});
+
+$('#get-description').click(function(e){
+  
+  $('#description-body').text("Loading...")
+
+  chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    let url = tabs[0].url;    
+    $.ajax({
+      url: "http://127.0.0.1:8000/get-description/",
+      type: "POST",
+      data: { 'url' : url},
+      success: function(response){
+          console.log(response);
+          $('#description-body').text(response)
+      }
+    
+
+  });
+
+});
+
+});
+
 
 $('#search').on('hide.bs.modal', function (e) {
     const search = $('#search_input').val();
@@ -251,7 +275,3 @@ var arrLang = {
 // talk.addEventListener('click', function(){
 //   recorder.start();
 // });
-
-
-
-

@@ -22,12 +22,26 @@
 <div class="modal fade" id="search" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-body">
+      <div class="modal-body" style="font-family: Poppins;">
         
-        <div class="input-group mb-3">
-          <input id="search_input" type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="button-addon2">
-          <button class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
+        <div class="row">
+
+          <div class="input-group mb-3">
+            <input id="search_input" type="text" class="form-control" placeholder="Find in page..." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-outline-secondary" type="button" id="search-btn">Search</button>
+          </div>
+  
+          <div class="col-12">
+              <button class="btn btn-primary btn-sm" id="get-description">Get Summary</button>
+              <div class="card-body">
+                <p class="card-text" id="description-body"></p>
+            </div>
+
+          </div>         
+
+
         </div>
+        
 
       </div>
     </div>
