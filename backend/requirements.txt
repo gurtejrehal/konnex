@@ -4,12 +4,3 @@ django-3-jet==1.0.8
 django-nested-admin==3.3.2
 django-registration-redux==2.8
 django-widget-tweaks==1.4.8
-nltk==3.6.2
-numpy==1.18.5
-requests==2.24.0
-tensorboard==2.3.0
-tensorboard-plugin-wit==1.7.0
-tensorflow==2.3.0
-tensorflow-estimator==2.3.0
-tflearn==0.5.0
-tqdm==4.48.0
