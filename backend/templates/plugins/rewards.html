@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-between">
+          <h4 class="mb-4">Claim your rewards</h4>
+          <h4>{{ points }} <i class="fas fa-star"></i></h4>
+        </div>
+
+        <div class="d-flex align-items-start">
+          <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <button class="nav-link active" id="v-pills-reward-tab" data-bs-toggle="pill" data-bs-target="#v-pills-reward" type="button" role="tab" aria-controls="v-pills-reward" aria-selected="true">Rewards</button>
+            <button class="nav-link" id="v-pills-claimed-tab" data-bs-toggle="pill" data-bs-target="#v-pills-claimed" type="button" role="tab" aria-controls="v-pills-claimed" aria-selected="false">Claimed</button>
+          </div>
+
+
+          <div class="tab-content" id="v-pills-tabContent">
+            <div class="tab-pane fade show active" id="v-pills-reward" role="tabpanel" aria-labelledby="v-pills-reward-tab">
+
+              <!-- start -->
+        <div class="row row-cols-1 row-cols-2 g-4" style="font-family: Poppins;">
+
+          {% for reward in rewards_remaining %}
+          <div class="col">
+            <div class="card text-white bg-primary h-100">
+              <div class="card-header"><i class="fab fa-gratipay"></i> Task</div>
+              <div class="card-body text-center mt-2">
+                <h5 class="card-title">{{ reward.title }}</h5>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+        <!-- end -->
+
+
+
+        </div>
+
+       <div class="tab-pane fade" id="v-pills-claimed" role="tabpanel" aria-labelledby="v-pills-claimed-tab">
+
+                         <!-- start -->
+        <div class="row row-cols-1 g-3" style="font-family: Poppins;">
+            {% for reward in rewards_finish %}
+              <div class="col">
+                <div class="card text-white bg-success h-100">
+                  <div class="card-header">{{ reward.count }} {{ reward.plugin.name }}</div>
+                  <div class="card-body text-center mt-2">
+                    <h5 class="card-title"><i class="fas fa-check-circle"></i></h5>
+                    <div class="card-text">Completed</div>
+                    <p class="card-text"><small class="text-muted" style="color:white !important">{{ reward.whenpublished }}</small></p>
+                  </div>
+                </div>
+              </div>
+          {% endfor %}
+
+        </div>
+        <!-- end -->
+
+
+
+       </div>
+
+          </div>
+        </div>

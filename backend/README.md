@@ -1,2 +1,2 @@
-# Konnex - Frontend
+# Konnex - Backend
 Konnex - AI Assistant

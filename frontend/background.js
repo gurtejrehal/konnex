@@ -55,6 +55,63 @@ $('#notifications-check').click(function(e){
 
 });
 
+
+$('#usage-check').click(function(e){
+  e.preventDefault();
+$.ajax({
+          url: "http://127.0.0.1:8000/usage/",
+          type: "GET",
+          data: { 'status' : true },
+          success: function(response){
+            console.log(response);
+            var ctx = $('#usage-chart');
+            var myChart = new Chart(ctx, {
+              type: 'line',
+              data: {
+                labels: ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"],
+                datasets: [{ 
+                    data: response.search_count,
+                    label: "Search",
+                    borderColor: "#3e95cd",
+                    fill: false
+                  }, { 
+                    data: [1,4,2,3,1,0,1],
+                    label: "Support",
+                    borderColor: "#8e5ea2",
+                    fill: false
+                  }, { 
+                    data: response.bug_count,
+                    label: "Bugs Report",
+                    borderColor: "#3cba9f",
+                    fill: false
+                  }, { 
+                    data: response.noti_count,
+                    label: "Notifications",
+                    borderColor: "#e8c3b9",
+                    fill: false
+                  }, { 
+                    data: response.feed_count,
+                    label: "Feedback",
+                    borderColor: "#c45850",
+                    fill: false
+                  }
+                ]
+              },
+              options: {
+                title: {
+                  display: true,
+                  text: 'Usage of Plugins'
+                }
+              }
+            });
+
+
+          }
+
+      });
+
+});
+
 $("#search-btn").click(function(e){
     const search = $('#search_input').val();
 
@@ -67,6 +124,17 @@ $("#search-btn").click(function(e){
                  $(this).css("border","solid 2px red") });`}
         );
       });
+
+      $.ajax({
+        url: "http://127.0.0.1:8000/search/",
+        type: "POST",
+        data: { 'keyword' : search},
+        success: function(response){
+            console.log(response);
+        }
+
+    });
+
 })
 
 $('#search').on('hide.bs.modal', function (e) {
@@ -95,6 +163,24 @@ $("#bug-card").click(function(e){
 
 });
 
+$('#rewards-btn').click(function(e){
+  e.preventDefault();
+$.ajax({
+          url: "http://127.0.0.1:8000/rewards/",
+          type: "GET",
+          data: { 'status' : true },
+          success: function(response){
+                  $('#rewards-modal-body').html(response);
+          }
+
+      });
+
+});
+
+$('.clicker').click(function () {
+  $('#plugins').toggleClass('overlay');
+});
+
 
 var arrLang = {
     'en': {
@@ -116,13 +202,22 @@ var arrLang = {
       'feedback': 'प्रतिपुष्टि'
     },
     'ben': {
-      'title': 'Konnex - AI Assitant',
+      'title': 'কোনেক্স - এ আই সহায়ক',
       'search': 'অনুসন্ধান',
       'support': 'সহায়তা',
       'bugs': 'সমস্যা',
       'notifications': 'খবর',
       'usage': 'পরিমাপ',
       'feedback': 'প্রতিক্রিয়া'
+    },
+    'kan': {
+      'title': 'ಕೊನೆಕ್ಸ್ - ಎ ನಾನು ಸಹಾಯಕ',
+      'search': 'ಹುಡುಕಿ',
+      'support': 'ಬೆಂಬಲ',
+      'bugs': 'ದೋಷಗಳು',
+      'notifications': 'ಅಧಿಸೂಚನೆಗಳು',
+      'usage': 'ಬಳಕೆ',
+      'feedback': 'ಪ್ರತಿಕ್ರಿಯೆ'
     }
   };
 
@@ -136,3 +231,27 @@ var arrLang = {
       });
     });
   });
+
+// support 
+// const talk = document.querySelector('.talk');
+// const voice2text = document.querySelector(".voice2text");
+
+// const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+// const recorder = new SpeechRecognition();
+
+
+// recorder.onstart = () => {
+//   console.log("working");
+// };
+
+// recorder.onresult = (e) => {
+//   console.log(e);
+// };
+
+// talk.addEventListener('click', function(){
+//   recorder.start();
+// });
+
+
+
+

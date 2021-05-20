@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PluginName, Feedback, BugReporting, Announcement
+from .models import PluginName, Feedback, BugReporting, Announcement, Search, Reward
 
 
 admin.site.site_header = 'Konnex administration'
@@ -15,7 +15,14 @@ class AnnouncementAdmin(admin.ModelAdmin):
         obj.save()
 
 
+class RewardAdmin(admin.ModelAdmin):
+    list_display = ('title', 'plugin',)
+    list_filter = ['plugin__name']
+
+
 admin.site.register(PluginName)
+admin.site.register(Search)
 admin.site.register(Feedback)
 admin.site.register(BugReporting)
+admin.site.register(Reward, RewardAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)
