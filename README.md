@@ -59,7 +59,7 @@ We can have upto 10 celery workers at a time. This feature allows us to scale th
 # Frontend
 - From Web browser Extension page add it from the frontend folder.
 
-Or wait till we add it Extension Store soon!
+Or wait till we add it to Web Browser(Chrome/Firefox/Opera/Edge) Extension Store soon!
 
 
 
