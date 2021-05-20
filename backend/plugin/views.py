@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
+from .aiChatbot.main import chat
 
 
 def calculate_count():
@@ -194,6 +195,14 @@ def rewards_api(request):
         }
 
         return render(request, 'plugins/rewards.html', context=context)
+
+
+@csrf_exempt
+def support(request):
+    if request.method == 'POST':
+        text = request.POST.get('text')
+        response = chat(text=text)
+        return HttpResponse(response)
 
 
 

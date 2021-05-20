@@ -32,7 +32,8 @@
           </div>
   
           <div class="col-12">
-              <button class="btn btn-primary btn-sm" id="get-description">Get Summary</button>
+              <button class="btn btn-primary btn-sm" id="get-description" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Summary of the current page">Get Summary</button>
+              <span id="copy-btn"></span>
               <div class="card-body">
                 <p class="card-text" id="description-body"></p>
             </div>
@@ -56,9 +57,53 @@
           <div class="modal-body">
             
             <div id="container">
-                <a class="talk" href="#">Activate Voice</a>
-        
-                <p class="voice2text"></p>
+                
+
+              <div class="msger">
+              
+                <div class="msger-chat">
+                  <div class="msg left-msg">
+                    <div
+                     class="msg-img"
+                     style="background-image: url(https://image.flaticon.com/icons/svg/327/327779.svg)"
+                    ></div>
+              
+                    <div class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name">Konnex BOT</div>
+                        <div class="msg-info-time"></div>
+                      </div>
+              
+                      <div class="msg-text">
+                        Hi, welcome to Konnex Chat! Go ahead and ask me a something. 😄
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="msg right-msg">
+                    <div
+                     class="msg-img"
+                     style="background-image: url(https://image.flaticon.com/icons/svg/145/145867.svg)"
+                    ></div>
+              
+                    <div class="msg-bubble">
+                      <div class="msg-info">
+                        <div class="msg-info-name">User</div>
+                        <div class="msg-info-time time"></div>
+                      </div>
+              
+                      <div class="msg-text">
+                        All the chats are resetted from before.
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <form class="msger-inputarea">
+                  <input type="text" class="msger-input" placeholder="Enter your message...">
+                  <button type="submit" class="msger-send-btn" id="support-send-btn">Send</button>
+                </form>
+              </div>
                 
             </div>
     

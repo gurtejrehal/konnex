@@ -114,8 +114,7 @@ $.ajax({
 
 $("#search-btn").click(function(e){
     const search = $('#search_input').val();
-
-    
+    $("button[data-bs-toggle='tooltip']").tooltip();
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.executeScript(
           tabs[0].id,
@@ -139,7 +138,7 @@ $("#search-btn").click(function(e){
 });
 
 $('#get-description').click(function(e){
-  
+
   $('#description-body').text("Loading...")
 
   chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
@@ -150,6 +149,7 @@ $('#get-description').click(function(e){
       data: { 'url' : url},
       success: function(response){
           console.log(response);
+          $('#copy-btn').html(`<button id="copy-btn-main" class="btn btn-dark btn-sm"><i style="color:white" class="fas fa-copy"></i></button>`)
           $('#description-body').text(response)
       }
     
@@ -275,3 +275,83 @@ var arrLang = {
 // talk.addEventListener('click', function(){
 //   recorder.start();
 // });
+
+
+$('#support-send-btn').click(function(e){
+  e.preventDefault();
+
+  const msgerForm = $(".msger-inputarea");
+  const msgerInput = $(".msger-input");
+  const msgerChat = $(".msger-chat");  
+    
+  const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
+  const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
+  const BOT_NAME = "BOT";
+  const PERSON_NAME = "User";
+  
+  function appendMessage(name, img, side, text) {
+    
+    const msgHTML = `
+      <div class="msg ${side}-msg">
+        <div class="msg-img" style="background-image: url(${img})"></div>
+  
+        <div class="msg-bubble">
+          <div class="msg-info">
+            <div class="msg-info-name">${name}</div>
+            <div class="msg-info-time">${formatDate(new Date())}</div>
+          </div>
+  
+          <div class="msg-text">${text}</div>
+        </div>
+      </div>
+    `;
+    msgerChat.append(msgHTML);
+    msgerChat.scrollTop += 500;
+  }
+
+    // Utils
+    function get(selector, root = document) {
+      return root.querySelector(selector);
+    }
+    
+    function formatDate(date) {
+      const h = "0" + date.getHours();
+      const m = "0" + date.getMinutes();
+    
+      return `${h.slice(-2)}:${m.slice(-2)}`;
+    }
+    
+    function random(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    }
+    
+    
+
+    const msgText = msgerInput.val();
+    if (!msgText) return;
+
+    appendMessage(PERSON_NAME, PERSON_IMG, "right", msgText);
+    msgerInput.val("");
+
+$.ajax({
+          url: "http://127.0.0.1:8000/support/",
+          type: "POST",
+          data: { 'text' : msgText },
+          success: function(response){           
+
+            const msgText = response;
+            const delay = msgText.split(" ").length * 100;
+          
+            setTimeout(() => {
+              appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
+            }, delay);
+
+          }
+
+      });
+
+});
+
+
+
+
