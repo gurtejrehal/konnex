@@ -88,7 +88,7 @@
               
                     <div class="msg-bubble">
                       <div class="msg-info">
-                        <div class="msg-info-name">User</div>
+                        <div class="msg-info-name">You</div>
                         <div class="msg-info-time time"></div>
                       </div>
               
@@ -183,6 +183,19 @@
 </div>
 
 
+<!-- Voice Modal -->
+<div class="modal fade" id="voice" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
  <!-- Feedback Modal -->
  <div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -236,19 +249,23 @@
    
     <div class="container mt-2 mb-2">
 
-      <div class="row mb-3">
+      <div class="d-flex mb-3 justify-content-between">
         <!-- <img src="icon128x128.png" class="img-thumbnail" height="30px" width="30px"></img> -->
 
-        <div class="col-8">
+        <div class="">
           <h2 class="lang" style="color:white;font-family: Montserrat;" key="title">Konnex - AI Assitant</h2>
 
         </div>
 
-        <div class="col-2">
+        <div class="">
           <button id="rewards-btn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#rewards" ><i class="fas fa-gift"></i></button>
         </div>
 
-        <div class="col-2">
+        <div class="">
+          <div class="btn btn-dark rounded-circle" data-bs-toggle="modal" data-bs-target="#voice"><i class="fas fa-microphone"></i></div>
+        </div>
+
+        <div class="">
 
           <div class="dropdown clicker">
             <button class="btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -263,7 +280,7 @@
 
           </div>
             
-        </div>    
+        </div>   
 
 
       </div>

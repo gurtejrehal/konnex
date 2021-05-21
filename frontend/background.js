@@ -289,7 +289,7 @@ $('#support-send-btn').click(function(e){
   const BOT_IMG = "https://image.flaticon.com/icons/svg/327/327779.svg";
   const PERSON_IMG = "https://image.flaticon.com/icons/svg/145/145867.svg";
   const BOT_NAME = "BOT";
-  const PERSON_NAME = "User";
+  const PERSON_NAME = "You";
   
   function appendMessage(name, img, side, text) {
     
