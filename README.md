@@ -27,6 +27,8 @@ Konnex provides the following features:
 
 
  Konnex works seamlessly without any dependency, just add it your browser and you are good to go!
+ 
+ ![frontend](https://user-images.githubusercontent.com/28597524/119143792-a5241280-ba65-11eb-9902-c3b055bef125.jpg)
 
 ### Back-end (Administration)
 Konnex  Administration has a strong control over the app. Following are the features Konnex Admin provides.
@@ -43,8 +45,7 @@ Konnex  Administration has a strong control over the app. Following are the feat
 - Scalable
 
 
-![collage (1)](https://user-images.githubusercontent.com/28597524/100134680-9392f100-2eae-11eb-9e32-071c90947766.jpg "FALCON")
-
+![backend](https://user-images.githubusercontent.com/28597524/119143838-b2d99800-ba65-11eb-8596-8a4d28471667.jpg)
 
 
 ### Efficient
