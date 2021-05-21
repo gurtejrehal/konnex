@@ -65,6 +65,7 @@ We can have upto 10 celery workers at a time. This feature allows us to scale th
 
 ### Optional Message Service
 - Requires you to get your Twilio API key in backend/Konnex/settings.py
+
 `ACCOUNT_SID=your_twilio_account_sid`
    `AUTH_TOKEN=your_twilio_auth_token`
 
