@@ -37,6 +37,7 @@ class Feedback(models.Model):
     email = models.EmailField()
     subject = models.CharField(max_length=50)
     comment = models.TextField(max_length=1000)
+    rating = models.IntegerField(default=1)
 
     created = models.DateTimeField(auto_now_add=True)
 

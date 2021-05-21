@@ -20,9 +20,14 @@ class RewardAdmin(admin.ModelAdmin):
     list_filter = ['plugin__name']
 
 
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'rating',)
+    list_filter = ['rating']
+
+
 admin.site.register(PluginName)
 admin.site.register(Search)
-admin.site.register(Feedback)
+admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(BugReporting)
 admin.site.register(Reward, RewardAdmin)
 admin.site.register(Announcement, AnnouncementAdmin)

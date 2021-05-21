@@ -112,8 +112,9 @@ def feedback(request):
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         comment = request.POST.get('comment')
+        rating = request.POST.get('rating')
 
-        feedback = Feedback(name=name, email=email, subject=subject, comment=comment)
+        feedback = Feedback(name=name, email=email, subject=subject, comment=comment, rating=int(rating))
         feedback.save()
 
         feed_count = actual_count(calculate_count()[0])
