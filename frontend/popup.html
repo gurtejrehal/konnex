@@ -33,7 +33,7 @@
   
           <div class="col-12">
               <button class="btn btn-primary btn-sm" id="get-description" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Summary of the current page">Get Summary</button>
-              <span id="copy-btn"></span>
+              <span id="copy-btn"></span><button class="btn btn-info btn-sm ml-4" id="speak-summary"><i class="fas fa-microphone" style="color:black"></i></button>
               <div class="card-body">
                 <p class="card-text" id="description-body"></p>
             </div>
@@ -57,7 +57,7 @@
           <div class="modal-body">
             
             <div id="container">
-                
+                <div class="btn btn-sm" id="enable-voice">Enable Voice Reply</div>
 
               <div class="msger">
               
@@ -102,6 +102,7 @@
                 <form class="msger-inputarea">
                   <input type="text" class="msger-input" placeholder="Enter your message...">
                   <button type="submit" class="msger-send-btn" id="support-send-btn">Send</button>
+                  
                 </form>
               </div>
                 
@@ -188,7 +189,11 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-body">
-        
+
+        <div class="input-group">
+          <textarea class="form-control" id="query" aria-label="With textarea" aria-describedby="activate-voice"></textarea>
+          <button class="btn btn-outline-secondary" type="button" id="activate-voice"><i class="fas fa-microphone"></i></button>
+        </div>
         
       </div>
     </div>
@@ -231,10 +236,13 @@
           </div>
           
 
-          <div class="form-floating">
+          <div class="form-floating mb-3">
             <textarea id="id_comment" class="form-control" placeholder="Leave a comment here" name="comment" style="height: 100px"></textarea>
             <label for="id_comment">Comments</label>
           </div>
+
+          <label for="id_rating" class="form-label">Rate</label>
+          <input type="range" class="form-range" min="1" max="5" step="0.5" name="rating" id="id_rating">
 
           <div class="col-12 mt-3">
             <button id="feedback-form-submit" type="submit" class="btn btn-dark">Submit</button>
@@ -258,11 +266,11 @@
         </div>
 
         <div class="">
-          <button id="rewards-btn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#rewards" ><i class="fas fa-gift"></i></button>
+          <div class="btn rounded-circle" id="enable-narration"><i class="fas fa-microphone"></i></div>
         </div>
 
         <div class="">
-          <div class="btn btn-dark rounded-circle" data-bs-toggle="modal" data-bs-target="#voice"><i class="fas fa-microphone"></i></div>
+          <button id="rewards-btn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#rewards" ><i class="fas fa-gift"></i></button>
         </div>
 
         <div class="">
@@ -286,7 +294,7 @@
       </div>
 
       <div class="row row-cols-3 row-cols-md-3 g-4 align-middle" id="plugins">
-        <div class="col h-100" data-bs-toggle="modal" data-bs-target="#search">
+        <div class="col h-100" data-bs-toggle="modal" data-bs-target="#search" id="search-card">
           <div class="card">
             <div class="card-body">
               <h6 class="card-title text-center">

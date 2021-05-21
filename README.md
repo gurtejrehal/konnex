@@ -15,13 +15,16 @@ Konnex provides the following features:
 - Bug Reporting. (Get rewarded and help Konnex become better)
 - Trends and Analytica
 - Graphical Data
-- 24/7 fully trained AI - Powered Chat Bot
+- 24/7 fully trained AI - Powered Chat Bot 
+- AI - Voice Enabled
 - Announcements/Notifications on go!
 - CSRF Protection
 - Rewards for eveything you do, claim your points!
 - Multilingual - now use Konnex in your regional language!
 - Feedbacks
+- Stay updated with SMS enabled!
 - Use on go!
+
 
  Konnex works seamlessly without any dependency, just add it your browser and you are good to go!
 
@@ -33,6 +36,7 @@ Konnex  Administration has a strong control over the app. Following are the feat
 - Have a track of all the users with high reward points.
 - Push Announcements/Notifications enabled
 - Check Bug Reportings and fix bugs earlier
+- Automate the SMS for support ticket
 - Add Reward task and points!
 - Get an insight of feedbacks
 - Super Admin keep tracks of all recent admin activities.

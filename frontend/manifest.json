@@ -12,6 +12,7 @@
 "permissions": [
   "activeTab",
   "tabs" ,
+  "tts",
   "storage",
   "unlimitedStorage",
   "browsingData",

@@ -1,3 +1,15 @@
+var voice = false;
+var narration = false;
+
+$('#enable-voice').click(function(){
+  voice = !voice;
+  $("#enable-voice").toggleClass("btn-primary")
+})
+
+$('#enable-narration').click(function(){
+  narration = !narration;
+  $("#enable-narration").toggleClass("btn-dark")
+})
 
 $('#feedback-form-submit').click(function(e){
     e.preventDefault();
@@ -6,11 +18,12 @@ $('#feedback-form-submit').click(function(e){
     const email = $('#id_email').val();
     const subject = $('#id_subject').val();
     const comment = $('#id_comment').val();
+    const rating = $('#id_rating').val();
 
 	$.ajax({
             url: "http://127.0.0.1:8000/feedback/",
             type: "POST",
-            data: { 'name' : name, 'email' : email, 'subject' : subject, 'comment': comment},
+            data: { 'name' : name, 'email' : email, 'subject' : subject, 'comment': comment, 'rating': rating},
             success: function(response){
 					alert("Thank you for your response!")
                     $('#feedback').modal('hide');
@@ -43,6 +56,8 @@ $('#bug-form-submit').click(function(e){
 
 $('#notifications-check').click(function(e){
     e.preventDefault();
+    if(narration){ speak("You can check all the Announcements here"); }
+
 	$.ajax({
             url: "http://127.0.0.1:8000/notifications/",
             type: "GET",
@@ -58,6 +73,8 @@ $('#notifications-check').click(function(e){
 
 $('#usage-check').click(function(e){
   e.preventDefault();
+  if(narration){ speak("Here you can check the Usage of current plugins you have used till now"); }
+
 $.ajax({
           url: "http://127.0.0.1:8000/usage/",
           type: "GET",
@@ -151,7 +168,8 @@ $('#get-description').click(function(e){
       data: { 'url' : url},
       success: function(response){
           console.log(response);
-          $('#copy-btn').html(`<button id="copy-btn-main" class="btn btn-dark btn-sm"><i style="color:white" class="fas fa-copy"></i></button>`)
+          $('#copy-btn').html(`<button id="copy-btn-main" class="btn btn-dark btn-sm ml-2 mr-2">
+          <i style="color:white" class="fas fa-copy"></i></button>`)
           $('#description-body').text(response)
       }
     
@@ -181,6 +199,7 @@ $('#search').on('hide.bs.modal', function (e) {
 
 
 $("#bug-card").click(function(e){
+  if(narration){ speak("If you have spotted any bug, you can report through here. I have already taken a screenshot for you!"); }
 
     chrome.tabs.captureVisibleTab(null,{},function(dataUri){
         console.log(dataUri);
@@ -189,8 +208,14 @@ $("#bug-card").click(function(e){
 
 });
 
+$("#search-card").click(function(e){
+  if(narration){ speak("Here you can  get a quick summary of the current page, which will save you time. Alternatively you can also use Find in Page feature which will make solid borders arounds your search."); }
+
+});
+
 $('#rewards-btn').click(function(e){
   e.preventDefault();
+  if(narration){ speak("You can check all your current rewards here. Complete more tasks to get rewarded and gain loyalty stars"); }
 $.ajax({
           url: "http://127.0.0.1:8000/rewards/",
           type: "GET",
@@ -205,6 +230,7 @@ $.ajax({
 
 $('.clicker').click(function () {
   $('#plugins').toggleClass('overlay');
+  if(narration){ speak("You can change your current language here."); }
 });
 
 
@@ -348,12 +374,51 @@ $.ajax({
               appendMessage(BOT_NAME, BOT_IMG, "left", msgText);
             }, delay);
 
+            if(voice){
+              speak(msgText)
+            }
+
           }
 
       });
 
 });
 
+function speak(text){
+  var utterance = new SpeechSynthesisUtterance();
+utterance.text = text;
+
+utterance.lang = 'en-GB'; // language, default is 'en-US'
+utterance.volume = 0.5;   // volume, from 0 to 1, default is 1
+utterance.rate = 0.8;     // speaking rate, default is 1 
+
+window.speechSynthesis.speak(utterance);
+}
+
+$("#speak-summary").click(function(){
+  const text = $('#description-body').text();
+  if(text === ""){
+    speak("You can use get Summary to get the summary of current webpage or use find in page which will highlist the text with solid borders");
+    return;
+  }
+  speak(text);
+})
+
+
+$("#activate-voice").click(function(){
+  const data = $("#query").val();
+  $.ajax({
+    url: "http://127.0.0.1:8000/support/",
+    type: "POST",
+    data: { 'text' : data },
+    success: function(response){
+        speak(response);
+        $("#query").val('');
+    }
+
+});
+
+})
 
 
 
