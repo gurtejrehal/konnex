@@ -67,7 +67,8 @@ We can have upto 10 celery workers at a time. This feature allows us to scale th
 - Requires you to get your Twilio API key in backend/Konnex/settings.py
 
 `ACCOUNT_SID=your_twilio_account_sid`
-   `AUTH_TOKEN=your_twilio_auth_token`
+
+`AUTH_TOKEN=your_twilio_auth_token`
 
 # Frontend
 - From Web browser Extension page add it from the frontend folder.
