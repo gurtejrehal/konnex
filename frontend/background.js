@@ -139,7 +139,9 @@ $("#search-btn").click(function(e){
 
 $('#get-description').click(function(e){
 
-  $('#description-body').text("Loading...")
+  $('#description-body').html(`<div class="spinner-border text-dark" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>`)
 
   chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
     let url = tabs[0].url;    

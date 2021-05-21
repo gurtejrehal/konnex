@@ -12,6 +12,7 @@ from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 from .aiChatbot.main import chat
+from sms import send_sms
 
 
 def calculate_count():
@@ -55,7 +56,7 @@ def get_image_from_data_url(data_url):
 
 
 def count_dataset(counts):
-    data = [0]*7
+    data = [0] * 7
 
     for obj in counts:
         data[obj['weekday']] = obj['count']
@@ -95,7 +96,7 @@ def description(request):
         soup = BeautifulSoup(external_sites_html.text)
 
         description = soup.find('meta', attrs={'name': 'og:description'}) or soup.find('meta', attrs={
-            'property': 'description'}) or soup.find('meta', attrs={'name': 'description'}) or\
+            'property': 'description'}) or soup.find('meta', attrs={'name': 'description'}) or \
                       soup.find('meta', attrs={'name': 'twitter:description'})
 
         if description:
@@ -123,6 +124,16 @@ def feedback(request):
             obj.finish_time = datetime.now()
             obj.save()
 
+        try:
+            send_sms(
+                'Thank you for your feedback',
+                '+17013472973',
+                ['+919064226537'],
+                fail_silently=False
+            )
+        except:
+            print("Message not sent")
+
         return HttpResponse('success')
 
 
@@ -138,6 +149,8 @@ def bug(request):
         bug = BugReporting(image=img, email=email, comment=comment)
         bug.save()
 
+        temp_id = bug.id
+
         bug_count = actual_count(calculate_count()[1])
         r_list = Reward.objects.filter(plugin__name='Bugs').filter(count__lte=bug_count)
 
@@ -145,6 +158,16 @@ def bug(request):
             obj.completed = True
             obj.finish_time = datetime.now()
             obj.save()
+
+        try:
+            send_sms(
+                f'The Bug you have reported has been registered with reference id: {temp_id}',
+                '+17013472973',
+                ['+919064226537'],
+                fail_silently=False
+            )
+        except:
+            print("Message not sent")
 
         return HttpResponse("success")
 
@@ -203,6 +226,3 @@ def support(request):
         text = request.POST.get('text')
         response = chat(text=text)
         return HttpResponse(response)
-
-
-

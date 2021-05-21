@@ -49,15 +49,22 @@ We can have upto 10 celery workers at a time. This feature allows us to scale th
 
 
 ## How to Install
-
+   
 # Backend
-- Create virtual enviorement, then activate it.
+- Create virtual environment, then activate it.
 - Install all the requirements file, ``` pip install -r requirements.txt```
 - For first time usage, ```python manage.py migrate``` and create admin ```python manage.py createsuperuser```
 - Run KONNEX, ```python manage.py runserver```
 
+### Optional Message Service
+- Requires you to get your Twilio API key in backend/Konnex/settings.py
+`ACCOUNT_SID=your_twilio_account_sid`
+   `AUTH_TOKEN=your_twilio_auth_token`
+
 # Frontend
 - From Web browser Extension page add it from the frontend folder.
+- Go to Chrome Extension Store, turn on Developer mode.
+- Click on `Load Unpacked` and choose frontend folder!
 
 Or wait till we add it to Web Browser(Chrome/Firefox/Opera/Edge) Extension Store soon!
 
