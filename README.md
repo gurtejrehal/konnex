@@ -2,6 +2,8 @@
 
 ## Konnex - AI Assistant (A Browser Extension AI Powered App)
 
+See working demo [here](https://www.youtube.com/watch?v=OkS96m-pDc0)
+
 See installation [here](#how-to-install)
 
 ## What is this?
