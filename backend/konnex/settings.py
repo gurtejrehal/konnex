@@ -132,6 +132,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 SMS_BACKEND = 'sms.backends.twilio.SmsBackend'
-TWILIO_ACCOUNT_SID = 'ACe2061a6b7a61b8bb2fcb621a236057d9'
-TWILIO_AUTH_TOKEN = 'f96eadccfde78f351a5c64bf7a426e1e'
+TWILIO_ACCOUNT_SID = ''
+TWILIO_AUTH_TOKEN = ''
 
